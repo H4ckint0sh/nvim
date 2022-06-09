@@ -27,8 +27,8 @@ local function footer()
 	-- local handle = io.popen("fortune")
 	-- local fortune = handle:read("*a")
 	-- handle:close()
-	-- return fortune
-	return "chrisatmachine.com"
+	-- retu2rn fortune
+	return "H4ckint0sh" 
 end
 
 dashboard.section.footer.val = footer()
