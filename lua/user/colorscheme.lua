@@ -1,4 +1,4 @@
-vim.cmd [[
-  colorscheme darkplus
+vim.cmd([[
+  colorscheme onedarkpro
   set background=dark
-]]
+]])
