@@ -378,7 +378,7 @@ vim.api.nvim_create_user_command("{}",
 	)
 ) --}}}
 
--- Tutorial Snippets go here --
+-- Tutorial Snippets go here --:w
 
 -- End Refactoring --
 
