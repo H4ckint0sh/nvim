@@ -41,9 +41,9 @@ for k, v in pairs(options) do
 	vim.opt[k] = v
 end
 
-vim.o.termguicolors = true
-vim.cmd("colorscheme darkplus")
-
-vim.cmd("set whichwrap+=<,>,[,],h,l")
-vim.cmd([[set iskeyword+=-]])
-vim.cmd([[set formatoptions-=cro]]) -- TODO: this doesn't seem to work
+if not vim.g.vscode then 
+	vim.o.termguicolors = true
+	vim.cmd("set whichwrap+=<,>,[,],h,l")
+	vim.cmd([[set iskeyword+=-]])
+	vim.cmd([[set formatoptions-=cro]]) -- TODO: this doesn't seem to work
+end
