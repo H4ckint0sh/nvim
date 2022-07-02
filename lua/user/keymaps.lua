@@ -38,16 +38,17 @@ if not vim.g.vscode then
 	-- Insert --
 	-- Press jk fast to enter
 	keymap("i", "jk", "<ESC>", opts)
+	
+	-- Visual --
+	-- Stay in indent mode
+	keymap("v", "<", "<gv", opts)
+	keymap("v", ">", ">gv", opts)
 end
 
 -- Move text up and down
 keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
 keymap("n", "<A-k>", "<Esc>:m .-2<CR>==gi", opts)
 
--- Visual --
--- Stay in indent mode
-keymap("v", "<", "<gv", opts)
-keymap("v", ">", ">gv", opts)
 
 -- Move text up and down
 keymap("v", "<A-j>", ":m .+1<CR>==", opts)
