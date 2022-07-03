@@ -1,4 +1,4 @@
 vim.cmd([[
-  colorscheme darkplus
+  colorscheme onedarker
   set background=dark
 ]])
