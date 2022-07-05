@@ -1,5 +1,5 @@
 vim.cmd([[
-  colorscheme onedarker
+  colorscheme onedark
   set background=dark
   highlight WinSeparator guibg=None
 ]])

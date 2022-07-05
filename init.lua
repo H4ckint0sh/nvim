@@ -1,10 +1,11 @@
-	require("user.options")
-	require("user.keymaps")
+require("user.options")
+require("user.keymaps")
 if vim.g.vscode then
-	 vim.cmd([[source vscode.vim]])
+	vim.cmd([[source vscode.vim]])
 else
 	require("user.plugins")
 	require("user.colorscheme")
+	require("user.onedark")
 	require("user.cmp")
 	require("user.lsp")
 	require("user.telescope")
