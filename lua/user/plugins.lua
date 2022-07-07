@@ -63,7 +63,7 @@ return packer.startup(function(use)
 	use("folke/which-key.nvim")
 
 	-- Colorschemes
-	use("navarasu/onedark.nvim")
+	use("AlphaTechnolog/onedarker.nvim")
 
 	-- cmp plugins
 	use("hrsh7th/nvim-cmp") -- The completion plugin
