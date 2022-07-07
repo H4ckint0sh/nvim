@@ -1,7 +1,7 @@
 require("user.options")
 require("user.keymaps")
 if vim.g.vscode then
-	vim.cmd([[source vscode.vim]])
+	vim.cmd("source ~/.config/nvim/vscode.vim")
 else
 	require("user.plugins")
 	require("user.colorscheme")
