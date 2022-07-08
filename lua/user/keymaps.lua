@@ -40,7 +40,7 @@ if not vim.g.vscode then
 	keymap("v", "<", "<gv", opts)
 	keymap("v", ">", ">gv", opts)
 	-- Outline toggle
-	keymap("n", "<S-c>", ":BSOpen<CR>", opts)
+	keymap("n", "<S-c>", ":JABSOpen<CR>", opts)
 end
 
 -- Move text up and down
