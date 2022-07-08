@@ -39,6 +39,8 @@ if not vim.g.vscode then
 	-- Stay in indent mode
 	keymap("v", "<", "<gv", opts)
 	keymap("v", ">", ">gv", opts)
+	-- Outline toggle
+	keymap("n", "<S-c>", ":JABSOpen<CR>", opts)
 end
 
 -- Move text up and down
