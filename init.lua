@@ -5,7 +5,6 @@ else
 	require("user.options")
 	require("user.plugins")
 	require("user.colorscheme")
-	require("user.onedark")
 	require("user.cmp")
 	require("user.lsp")
 	require("user.telescope")
