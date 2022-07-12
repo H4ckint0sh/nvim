@@ -1,7 +1,4 @@
-require("user.keymaps")
-if vim.g.vscode then
-	vim.cmd("source ~/.config/nvim/vscode.vim")
-else
+	require("user.keymaps")
 	require("user.options")
 	require("user.plugins")
 	require("user.colorscheme")
@@ -22,4 +19,3 @@ else
 	require("user.alpha")
 	require("user.whichkey")
 	require("user.autocommands")
-end

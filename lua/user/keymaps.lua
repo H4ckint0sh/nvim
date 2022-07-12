@@ -13,7 +13,6 @@ local keymap = vim.api.nvim_set_keymap
 --   term_mode = "t",
 --   command_mode = "c",
 
-if not vim.g.vscode then
 	--Remap space as leader key
 	keymap("", "<Space>", "<Nop>", opts)
 	vim.g.mapleader = " "
@@ -41,7 +40,7 @@ if not vim.g.vscode then
 	keymap("v", ">", ">gv", opts)
 	-- Outline toggle
 	keymap("n", "<S-c>", ":JABSOpen<CR>", opts)
-end
+
 
 -- Move text up and down
 keymap("n", "<A-j>", "<Esc>:m .+1<CR>==gi", opts)
