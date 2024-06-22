@@ -7,7 +7,7 @@ table.unpack = table.unpack or unpack -- 5.1 compatibility
 keymap("n", "<C-I>", "<C-I>", silent)
 
 -- Select whole file
-keymap('n', '<leader>%', 'ggVG', silent)
+keymap("n", "<leader>%", "ggVG", silent)
 
 -- Better window movement
 keymap("n", "<C-h>", "<C-w>h", silent)
@@ -35,15 +35,22 @@ keymap("n", "<C-s>", ":w<CR>", silent)
 keymap("i", "<C-s>", "<ESC> :w<CR>", silent)
 
 -- Telescope
-keymap("n", "<C-p>", "<CMD>lua require('plugins.telescope').project_files()<CR>")
+keymap(
+	"n",
+	"<C-p>",
+	':lua require("telescope.builtin").find_files({ hidden = true, find_command = { "fd", "--type", "f", "--hidden", "--exclude", ".git" }})<CR>'
+)
 keymap("n", "<S-p>", "<CMD>lua require('plugins.telescope.pickers.multi-rg')()<CR>")
 
 -- Remove highlights
 keymap("n", "<CR>", ":noh<CR><CR>", silent)
 
 -- Find word/file across project
-keymap("n", "<Leader>pf",
-  "<CMD>lua require('plugins.telescope').project_files({ default_text = vim.fn.expand('<cword>'), initial_mode = 'normal' })<CR>")
+keymap(
+	"n",
+	"<Leader>pf",
+	"<CMD>lua require('plugins.telescope').project_files({ default_text = vim.fn.expand('<cword>'), initial_mode = 'normal' })<CR>"
+)
 keymap("n", "<Leader>pw", "<CMD>lua require('telescope.builtin').grep_string({ initial_mode = 'normal' })<CR>")
 
 -- Buffers
@@ -77,14 +84,18 @@ keymap("n", "<leader>q", "<cmd>lua require('utils').toggle_quicklist()<CR>", sil
 
 -- Manually invoke speeddating in case switch.vim didn't work
 keymap("n", "<C-a>", ":if !switch#Switch() <bar> call speeddating#increment(v:count1) <bar> endif<CR>", silent)
-keymap("n", "<C-x>", ":if !switch#Switch({'reverse': 1}) <bar> call speeddating#increment(-v:count1) <bar> endif<CR>",
-  silent)
+keymap(
+	"n",
+	"<C-x>",
+	":if !switch#Switch({'reverse': 1}) <bar> call speeddating#increment(-v:count1) <bar> endif<CR>",
+	silent
+)
 
 -- Open links under cursor in browser with gx
-if vim.fn.has('macunix') == 1 then
-  keymap("n", "gx", "<cmd>silent execute '!open ' . shellescape('<cWORD>')<CR>", silent)
+if vim.fn.has("macunix") == 1 then
+	keymap("n", "gx", "<cmd>silent execute '!open ' . shellescape('<cWORD>')<CR>", silent)
 else
-  keymap("n", "gx", "<cmd>silent execute '!xdg-open ' . shellescape('<cWORD>')<CR>", silent)
+	keymap("n", "gx", "<cmd>silent execute '!xdg-open ' . shellescape('<cWORD>')<CR>", silent)
 end
 
 -- LSP
@@ -96,8 +107,8 @@ keymap("v", "<leader>ca", "<cmd>'<,'>lua vim.lsp.buf.code_action()<CR>", silent)
 keymap("n", "<leader>cr", "<cmd>lua vim.lsp.buf.rename()<CR>", silent)
 keymap("n", "<leader>cf", "<cmd>lua require('config.lsp.functions').format()<CR>", silent)
 keymap("v", "<leader>cf", function()
-  local start_row, _ = table.unpack(vim.api.nvim_buf_get_mark(0, "<"))
-  local end_row, _ = table.unpack(vim.api.nvim_buf_get_mark(0, ">"))
+	local start_row, _ = table.unpack(vim.api.nvim_buf_get_mark(0, "<"))
+	local end_row, _ = table.unpack(vim.api.nvim_buf_get_mark(0, ">"))
 
 	vim.lsp.buf.format({
 		range = {
