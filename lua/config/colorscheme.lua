@@ -12,6 +12,7 @@ catppuccin.setup({
 	--   -- Replace this with your scheme-specific settings or remove to use the defaults
 	-- transparent = true,
 	flavour = "mocha", -- "latte, frappe, macchiato, mocha"
+	transparent_background = true,
 	no_bold = true, --No Bold
 	styles = { -- Haes the styles of general hi groups (see `:h highlight-args`):
 		comments = { "italic" }, -- Change the style of comments
@@ -30,19 +31,36 @@ catppuccin.setup({
 	},
 	-- Integrations
 	integrations = {
-		hop = true,
+		aerial = true,
+		alpha = true,
+		cmp = true,
+		dashboard = true,
+		flash = true,
+		gitsigns = true,
+		headlines = true,
+		illuminate = true,
+		indent_blankline = { enabled = true },
+		leap = true,
 		lsp_trouble = true,
 		mason = true,
-		neogit = true,
+		markdown = true,
+		mini = true,
+		native_lsp = {
+			inlay_hints = {},
+			virtual_text = {},
+			virtual_lines = {},
+			underlines = {},
+		},
+		navic = { enabled = true, custom_bg = "lualine" },
+		neotest = true,
+		neotree = true,
 		noice = true,
 		notify = true,
-		symbols_outline = true,
+		semantic_tokens = true,
+		telescope = true,
+		treesitter = true,
 		treesitter_context = true,
-		native_lsp = {
-			inlay_hints = {
-				background = false,
-			},
-		},
+		which_key = true,
 	},
 
 	custom_highlights = function(colors)
@@ -73,5 +91,5 @@ vim.api.nvim_set_hl(0, "HackvimSecondaryBold", { bold = true, fg = mocha.mauve }
 vim.api.nvim_set_hl(0, "HackvimHeader", { bold = true, fg = mocha.blue })
 vim.api.nvim_set_hl(0, "HackvimHeaderInfo", { bold = true, fg = mocha.green })
 vim.api.nvim_set_hl(0, "HackvimFooter", { bold = true, fg = mocha.yellow })
-
+vim.api.nvim_set_hl(0, "HackvimHeader", { bold = true, fg = mocha.blue })
 vim.api.nvim_set_hl(0, "HackvimNvimTreeTitle", { bold = true, fg = mocha.text, bg = mocha.base })
