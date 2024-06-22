@@ -26,7 +26,7 @@ And of course usage of [telescope](https://github.com/nvim-telescope/telescope.n
 
 Dashboard
 
-![Dashboard](./.screenshots/5-dashboard.png.png)
+![Dashboard](./.screenshots/dashboard.png)
 
 Overview
 
