@@ -1,16 +1,11 @@
-# Ecovim: Frontend Neovim Config
-
-[![Last commit](https://img.shields.io/github/last-commit/ecosse3/nvim?style=for-the-badge)](https://github.com/ecosse3/nvim/commits/master)
-![Stars](https://img.shields.io/github/stars/ecosse3/nvim?style=for-the-badge)
-![License](https://img.shields.io/github/license/ecosse3/nvim?style=for-the-badge)
-![Neovim Version](https://img.shields.io/badge/For%20Neovim-0.9+-yellowgreen?style=for-the-badge&logo=neovim&logoColor=d8abbb&color=d8abbb)
+# HackVim: Frontend Neovim Config
 
 ### A non-minimal Neovim config built to work most efficiently with Frontend Development.
 
 ## Features
 
 - Configured for TypeScript Development (React.js, Next.js, Vue.js, Angular, Node.js etc.)
-- Great default theme: [Tokyonight](https://github.com/folke/tokyonight.nvim)
+- Great default theme: [catppuccin](https://github.com/catppuccin/nvim)
 - Lazy loaded via [lazy.nvim](https://github.com/folke/lazy.nvim)
 - Highly performant (90ms load time)
 - Extendable LSP configuration via [mason.nvim](https://github.com/williamboman/mason.nvim)
@@ -31,11 +26,11 @@ And of course usage of [telescope](https://github.com/nvim-telescope/telescope.n
 
 Dashboard
 
-![Dashboard](./.screenshots/6-alpha.png)
+![Dashboard](./.screenshots/5-dashboard.png.png)
 
 Overview
 
-![Neovim](./.screenshots/5-main.png)
+![Neovim](./.screenshots/overview.png)
 
 <details>
 <summary>More screenshots</summary>
@@ -86,7 +81,7 @@ Make sure to run `:TSInstall <lang>` for specific language you want to install.
 
 ## Configuration
 
-To change EcoVim related config use the `config/EcoVim.lua` file.
+To change HackVim related config use the `config/HackVim.lua` file.
 
 To change vim settings use the `config/options.lua` file.
 
@@ -94,7 +89,7 @@ To change plugin related settings use the specific `plugins/[name].lua` file. So
 
 ## Keybindings
 
-Currently I have no idea how to write for you my whole workflow of using Ecovim config in React.js projects I am working on,\
+Currently I have no idea how to write for you my whole workflow of using HackVim config in React.js projects I am working on,\
 but I can write you the most useful custom key bindings by the frequency I use them.
 
 Space (SPC) is my Leader key.
@@ -256,7 +251,7 @@ Check out the which-key menu and [keymappings.lua](https://github.com/ecosse3/nv
 
 Measured on M1.
 
-Ecovim started in 91.13ms 
+HackVim started in 91.13ms 
 
 ## Future Todo 
 

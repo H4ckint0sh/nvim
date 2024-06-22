@@ -12,4 +12,5 @@ require('config.lsp.setup')
 require('config.lsp.functions')
 
 require('internal.winbar')
+require("internal.statusline")
 require('internal.cursorword')

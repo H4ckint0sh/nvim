@@ -6,6 +6,9 @@ table.unpack = table.unpack or unpack -- 5.1 compatibility
 -- Fix moving forward in jumplist via <C-i>
 keymap("n", "<C-I>", "<C-I>", silent)
 
+-- Select whole file
+keymap('n', '<leader>%', 'ggVG', silent)
+
 -- Better window movement
 keymap("n", "<C-h>", "<C-w>h", silent)
 keymap("n", "<C-j>", "<C-w>j", silent)

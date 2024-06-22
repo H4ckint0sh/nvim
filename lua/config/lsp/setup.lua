@@ -139,5 +139,43 @@ require("mason-lspconfig").setup_handlers {
 
 require("ufo").setup({
   fold_virt_text_handler = ufo_config_handler,
-  close_fold_kinds = { "imports" },
+	provider_selector = function(bufnr, filetype, _)
+		local fmap = { lua = { "lsp", "treesitter" } }
+
+		return fmap[filetype]
+			or function()
+				local function handle_fallback_exception(err, providerName)
+					if type(err) == "string" and err:match("UfoFallbackException") then
+						return require("ufo").getFolds(bufnr, providerName)
+					else
+						return require("promise").reject(err)
+					end
+				end
+
+				return require("ufo")
+					.getFolds(bufnr, "lsp")
+					:catch(function(err)
+						return handle_fallback_exception(err, "treesitter")
+					end)
+					:catch(function(err)
+						return handle_fallback_exception(err, "indent")
+					end)
+			end
+	end,
+
+	open_fold_hl_timeout = 400,
+	close_fold_kinds_for_ft = { default = { "imports", "comment" } },
+	preview = {
+		win_config = {
+			border = { "", "─", "", "", "", "─", "", "" },
+			-- winhighlight = "Normal:Folded",
+			winblend = 0,
+		},
+		mappings = {
+			scrollU = "<C-u>",
+			scrollD = "<C-d>",
+			jumpTop = "[",
+			jumpBot = "]",
+		},
+	},
 })

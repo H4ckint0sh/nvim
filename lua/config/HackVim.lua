@@ -22,10 +22,10 @@ HackVim = {
         enabled = false,
       },
       codeium = {
-        enabled = false,
+        enabled = true,
       },
       copilot = {
-        enabled = true,
+        enabled = false,
       },
       tabnine = {
         enabled = false,

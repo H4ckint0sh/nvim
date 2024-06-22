@@ -5,12 +5,9 @@ local options = {
   cursorline     = true,                    --- Highlight of current line
   emoji          = false,                   --- Fix emoji display
   expandtab      = true,                    --- Use spaces instead of tabs
-  foldcolumn     = "0",
-  foldnestmax    = 0,
-  foldlevel      = 99,                 --- Using ufo provider need a large value
-  foldlevelstart = 99,                 --- Expand all folds by default
   ignorecase     = true,               --- Needed for smartcase
   laststatus     = 3,                  --- Have a global statusline at the bottom instead of one for each window
+  statusline = "%!v:lua.require('internal.statusline').global()",
   mouse          = "a",                --- Enable mouse
   number         = true,               --- Shows current line number
   pumheight      = 10,                 --- Max num of items in completion menu
@@ -18,7 +15,7 @@ local options = {
   scrolloff      = 8,                  --- Always keep space when scrolling to bottom/top edge
   shiftwidth     = 2,                  --- Change a number of space characters inserted for indentation
   showtabline    = 2,                  --- Always show tabs
-  signcolumn     = "yes:2",            --- Add extra sign column next to line number
+  signcolumn     = "yes:1",            --- Add extra sign column next to line number
   smartcase      = true,               --- Uses case in search
   smartindent    = true,               --- Makes indenting smart
   smarttab       = true,               --- Makes tabbing smarter will realize you have 2 vs 4
@@ -32,7 +29,7 @@ local options = {
   updatetime     = 100,                --- Faster completion
   viminfo        = "'1000",            --- Increase the size of file history
   wildignore     = "*node_modules/**", --- Don't search inside Node.js modules (works for gutentag)
-  wrap           = false,              --- Display long lines as just one line
+  wrap           = true,              --- Display long lines as just one line
   writebackup    = false,              --- Not needed
   -- Neovim defaults
   autoindent     = true,               --- Good auto indent
@@ -59,11 +56,6 @@ vim.opt.formatoptions:remove('c');
 vim.opt.formatoptions:remove('r');
 vim.opt.formatoptions:remove('o');
 vim.opt.fillchars:append('stl: ');
-vim.opt.fillchars:append('eob: ');
-vim.opt.fillchars:append('fold: ');
-vim.opt.fillchars:append('foldopen: ');
-vim.opt.fillchars:append('foldsep: ');
-vim.opt.fillchars:append('foldclose:');
 
 for k, v in pairs(options) do
   vim.opt[k] = v

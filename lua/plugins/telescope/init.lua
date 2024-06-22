@@ -31,12 +31,36 @@ require('telescope').setup {
       '--column',
       '--smart-case'
     },
-    layout_config     = {
-      horizontal = {
-        preview_cutoff = 120,
-      },
-      prompt_position = "top",
-    },
+    layout_config = {
+					width = 0.95,
+					height = 0.85,
+					prompt_position = "top",
+					horizontal = {
+						-- width_padding = 0.1,
+						-- height_padding = 0.1,
+						width = 0.9,
+						preview_cutoff = 60,
+						preview_width = function(_, cols, _)
+							if cols > 200 then
+								return math.floor(cols * 0.7)
+							else
+								return math.floor(cols * 0.6)
+							end
+						end,
+					},
+					vertical = {
+						-- width_padding = 0.05,
+						-- height_padding = 1,
+						width = 0.75,
+						height = 0.85,
+						preview_height = 0.4,
+						mirror = true,
+					},
+					flex = {
+						-- change to horizontal after 120 cols
+						flip_columns = 120,
+					},
+				},
     file_sorter       = require('telescope.sorters').get_fzy_sorter,
     prompt_prefix     = '  ',
     color_devicons    = true,
@@ -118,7 +142,7 @@ M.edit_neovim = function()
       color_devicons   = true,
       cwd              = "~/.config/nvim",
       previewer        = false,
-      prompt_title     = "Ecovim Dotfiles",
+      prompt_title     = "Hackvim Dotfiles",
       sorting_strategy = "ascending",
       winblend         = 4,
       layout_config    = {
