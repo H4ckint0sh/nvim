@@ -30,7 +30,7 @@ require("zen-mode").setup({
     gitsigns = { enabled = true },  -- disables git signs
     tmux = { enabled = false },     -- disables the tmux statusline
     alacritty = {
-      enabled = Hackvim.plugins.zen.alacritty_enabled or false,
+      enabled = HackVim.plugins.zen.alacritty_enabled or false,
       font = "14", -- font size
     },
     -- this will change the font size on kitty when in zen mode
@@ -38,11 +38,11 @@ require("zen-mode").setup({
     -- - allow_remote_control socket-only
     -- - listen_on unix:/tmp/kitty
     kitty = {
-      enabled = Hackvim.plugins.zen.kitty_enabled or false,
+      enabled = HackVim.plugins.zen.kitty_enabled or false,
       font = "+3", -- font size increment
     },
     wezterm = {
-      enabled = Hackvim.plugins.zen.wezterm_enabled or false,
+      enabled = HackVim.plugins.zen.wezterm_enabled or false,
       -- can be either an absolute font size or the number of incremental steps
       font = "+4", -- (10% increase per step)
     },
@@ -50,8 +50,8 @@ require("zen-mode").setup({
   -- callback where you can add custom code when the Zen window opens
   on_open = function()
     require("gitsigns.actions").toggle_current_line_blame()
-    vim.opt.relativenumber = false
     vim.cmd('IBLDisable')
+    vim.opt.relativenumber = false
     vim.opt.signcolumn = "no"
     require("gitsigns.actions").refresh()
   end,

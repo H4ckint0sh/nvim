@@ -22,7 +22,6 @@ require("lazy").setup("config.plugins", {
         "gzip",
         "netrwPlugin",
         "tarPlugin",
-        "tohtml",
         "tutor",
         "zipPlugin",
       },
@@ -30,7 +29,7 @@ require("lazy").setup("config.plugins", {
   },
   debug = false,
   ui = {
-    border = Hackvim.ui.float.border,
+    border = HackVim.ui.float.border,
   }
 })
 

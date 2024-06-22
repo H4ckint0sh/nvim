@@ -8,12 +8,12 @@ local hl_group = "LineNr"
 
 gps.setup({
   icons = {
-    ["class-name"] = "%#CmpItemKindClass#" .. icons.class .. "%*" .. "", -- Classes and class-like objects
-    ["hook-name"] = "%#CmpItemKindMethodDefault#" .. icons.hook .. "%*" .. "", -- React Hooks
-    ["function-name"] = "%#CmpItemKindFunction#" .. icons.func .. "%*" .. "", -- Functions
-    ["method-name"] = "%#CmpItemKindMethod#" .. icons.method .. "%*" .. "", -- Methods (functions inside class-like objects)
+    ["class-name"] = "%#CmpItemKindClass#" .. icons.class .. "%*" .. "",         -- Classes and class-like objects
+    ["hook-name"] = "%#CmpItemKindMethodDefault#" .. icons.hook .. "%*" .. "",   -- React Hooks
+    ["function-name"] = "%#CmpItemKindFunction#" .. icons.func .. "%*" .. "",    -- Functions
+    ["method-name"] = "%#CmpItemKindMethod#" .. icons.method .. "%*" .. "",      -- Methods (functions inside class-like objects)
     ["container-name"] = "%#CmpItemKindProperty#" .. icons.object .. "%*" .. "", -- Containers (example: lua tables)
-    ["tag-name"] = "%#CmpItemKindKeyword#" .. icons.tag .. "%*" .. " ", -- Tags (example: html tags)
+    ["tag-name"] = "%#CmpItemKindKeyword#" .. icons.tag .. "%*" .. " ",          -- Tags (example: html tags)
     ["mapping-name"] = "%#CmpItemKindProperty#" .. icons.object .. "%*" .. "",
     ["sequence-name"] = "%CmpItemKindProperty#" .. icons.array .. "%*" .. "",
     ["null-name"] = "%CmpItemKindField#" .. icons.field .. "%*" .. "",
@@ -41,7 +41,7 @@ gps.setup({
     }
   },
 
-  separator = " " .. "%#" .. hl_group .. "#" .. Hackvim.icons.caretRight .. "%*",
+  separator = " " .. "%#" .. hl_group .. "#" .. HackVim.icons.caretRight .. "%*",
 
   -- limit for amount of context shown
   -- 0 means no limit

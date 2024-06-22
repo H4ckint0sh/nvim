@@ -12,13 +12,11 @@ end
 local snip_status_ok, luasnip = pcall(require, "luasnip")
 if not snip_status_ok then
   P("Failed to load luasnip")
-  return
 end
 
 local cmp_git_ok, cmp_git = pcall(require, "cmp_git")
 if not cmp_git_ok then
   P("Failed to load cmp_git")
-  return
 end
 
 cmp_git.setup()
@@ -26,7 +24,6 @@ cmp_git.setup()
 local copilot_comparators_status_ok, copilot_cmp_comparators = pcall(require, "copilot_cmp.comparators")
 if not copilot_comparators_status_ok then
   P("Failed to load copilot_cmp.comparators")
-  return
 end
 
 require("luasnip/loaders/from_vscode").lazy_load()
@@ -112,18 +109,18 @@ end
 -- │ Setup                                                    │
 -- ╰──────────────────────────────────────────────────────────╯
 local source_mapping = {
-  npm = Hackvim.icons.terminal .. "NPM",
-  cmp_tabnine = Hackvim.icons.light,
-  Copilot = Hackvim.icons.copilot,
-  Codeium = Hackvim.icons.codeium,
-  nvim_lsp = Hackvim.icons.stack .. "LSP",
-  buffer = Hackvim.icons.buffer .. "BUF",
-  nvim_lua = Hackvim.icons.bomb,
-  luasnip = Hackvim.icons.snippet .. "SNP",
-  calc = Hackvim.icons.calculator,
-  path = Hackvim.icons.folderOpen2,
-  treesitter = Hackvim.icons.tree,
-  zsh = Hackvim.icons.terminal .. "ZSH",
+  npm = HackVim.icons.terminal .. "NPM",
+  cmp_tabnine = HackVim.icons.light,
+  Copilot = HackVim.icons.copilot,
+  Codeium = HackVim.icons.codeium,
+  nvim_lsp = HackVim.icons.stack .. "LSP",
+  buffer = HackVim.icons.buffer .. "BUF",
+  nvim_lua = HackVim.icons.bomb,
+  luasnip = HackVim.icons.snippet .. "SNP",
+  calc = HackVim.icons.calculator,
+  path = HackVim.icons.folderOpen2,
+  treesitter = HackVim.icons.tree,
+  zsh = HackVim.icons.terminal .. "ZSH",
 }
 
 local buffer_option = {
@@ -157,7 +154,7 @@ cmp.setup({
     ["<CR>"] = cmp.mapping.confirm({
       -- this is the important line for Copilot
       behavior = cmp.ConfirmBehavior.Replace,
-      select = Hackvim.plugins.completion.select_first_on_enter,
+      select = HackVim.plugins.completion.select_first_on_enter,
     }),
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
@@ -261,7 +258,7 @@ cmp.setup({
   sources = {
     {
       name = "copilot",
-      priority = 10,
+      priority = 11,
       max_item_count = 3,
     },
     {
@@ -327,7 +324,7 @@ cmp.setup({
 -- ╭──────────────────────────────────────────────────────────╮
 -- │ Tabnine Setup                                            │
 -- ╰──────────────────────────────────────────────────────────╯
-if Hackvim.plugins.ai.tabnine.enabled then
+if HackVim.plugins.ai.tabnine.enabled then
   tabnine:setup({
     max_lines = 1000,
     max_num_results = 3,

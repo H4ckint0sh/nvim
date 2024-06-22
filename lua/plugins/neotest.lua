@@ -20,7 +20,7 @@ neotest.setup({
     enabled = false
   },
   floating = {
-    border = Hackvim.ui.float.border or "rounded",
+    border = HackVim.ui.float.border or "rounded",
     max_height = 0.6,
     max_width = 0.6
   },

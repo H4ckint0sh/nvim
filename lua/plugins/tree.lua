@@ -147,7 +147,7 @@ require("nvim-tree").setup({
 
 vim.api.nvim_set_keymap(
 	"n",
-	"<leader>e",
+	"<C-e>",
 	"<cmd>lua require('nvim-tree.api').tree.toggle()<CR>",
 	{ noremap = true, silent = true }
 )
