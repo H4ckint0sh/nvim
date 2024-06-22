@@ -9,7 +9,7 @@ NC=$(tput sgr0)
 BOLD=$(tput bold)
 
 # VARIABLES
-declare -r GIT_BRANCH="${GIT_BRANCH:-"master"}"
+declare -r GIT_BRANCH="${GIT_BRANCH:-"main"}"
 declare -r GIT_REMOTE="${GIT_REMOTE:-H4ckint0sh/nvim.git}"
 declare -r NVIM_DIR="${NVIM_DIR:-"$(which nvim)"}"
 declare -r INSTALL_PREFIX="${INSTALL_PREFIX:-"$HOME/.local"}"
