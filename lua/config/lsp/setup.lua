@@ -46,10 +46,10 @@ local handlers = {
     border = HackVim.ui.float.border,
   }),
   ["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = HackVim.ui.float.border }),
-  ["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics,
-    { virtual_text = HackVim.lsp.virtual_text }
-  ),
+  --["textDocument/publishDiagnostics"] = vim.lsp.with(
+  --  vim.lsp.diagnostic.on_publish_diagnostics,
+  --  { virtual_text = HackVim.lsp.virtual_text }
+  --),
 }
 
 local function on_attach(client, bufnr)
