@@ -5,13 +5,14 @@ local mauve = mocha.mauve
 local crust = mocha.crust
 local text = mocha.text
 local base = mocha.base
+local none = mocha.none
 local lavender = mocha.lavender
 
 vim.api.nvim_set_hl(0, "StatusLineNormal", { bg = green, fg = crust })
 vim.api.nvim_set_hl(0, "StatusLineInsert", { bg = mauve, fg = crust })
 vim.api.nvim_set_hl(0, "StatusLineVisual", { bg = lavender, fg = crust })
-vim.api.nvim_set_hl(0, "StatusLineLsp", { bg = base, fg = text })
-vim.api.nvim_set_hl(0, "StatusLine", { bg = base, fg = text })
+vim.api.nvim_set_hl(0, "StatusLineLsp", { bg = none, fg = text })
+vim.api.nvim_set_hl(0, "StatusLine", { bg = none, fg = text })
 
 local modes_map = {
 	["n"] = "NORMAL",
