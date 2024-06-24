@@ -1,4 +1,5 @@
 local mocha = require("catppuccin.palettes").get_palette("mocha")
+local check_recording  = require("internal.statusline.macro").check_recording
 
 local green = mocha.green
 local mauve = mocha.mauve
@@ -18,7 +19,7 @@ local modes_map = {
 	["i"] = "INSERT",
 	["v"] = "VISUAL ",
 	["V"] = "VISUAL LINE",
-	[""] = "VISUAL BLOCK",
+	["␖"] = "VISUAL BLOCK",
 	["c"] = "COMMAND",
 }
 
@@ -27,7 +28,7 @@ local function get_mode_color()
 	local mode_color = "%#StatusLineNormal#"
 	if current_mode == "i" then
 		mode_color = "%#StatusLineInsert#"
-	elseif current_mode == "V" or current_mode == "" or current_mode == "v" then
+	elseif current_mode == "V" or current_mode == "␖" or current_mode == "v" then
 		mode_color = "%#StatusLineVisual#"
 	end
 	return mode_color
@@ -59,13 +60,15 @@ local M = {}
 
 M.global = function()
 	local has_lsp_status, lsp_status = pcall(require, "lsp-status")
+  local recording_msg = check_recording()
 	return table.concat({
 		get_mode(),
 		" ",
-		"%=",
 		vim.fn.fnamemodify(vim.api.nvim_eval("getcwd()"), ":~"),
-		" ",
 		"%#StatusLine#%{'Line: '}%l/%L, %{'Col: '}%c",
+		"%=",
+		" ",
+    recording_msg,
 		"%=",
 		has_lsp_status and lsp_status.status() or "",
 		" ",
@@ -76,3 +79,4 @@ M.global = function()
 end
 
 return M
+

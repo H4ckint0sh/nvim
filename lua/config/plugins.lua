@@ -80,7 +80,7 @@ return {
 	{
 		"kevinhwang91/nvim-bqf",
 		ft = "qf",
-    lazy = true,
+		lazy = true,
 		init = function()
 			require("plugins.bqf-init")
 		end,
@@ -653,6 +653,10 @@ return {
 	{
 		"folke/noice.nvim",
 		cond = HackVim.plugins.experimental_noice.enabled,
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+			"rcarriga/nvim-notify",
+		},
 		lazy = false,
 		config = function()
 			require("plugins.noice")
