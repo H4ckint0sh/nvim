@@ -12,7 +12,6 @@ catppuccin.setup({
 	--   -- Replace this with your scheme-specific settings or remove to use the defaults
 	-- transparent = true,
 	flavour = "mocha", -- "latte, frappe, macchiato, mocha"
-	transparent_background = true,
 	no_bold = true, --No Bold
 	styles = { -- Haes the styles of general hi groups (see `:h highlight-args`):
 		comments = { "italic" }, -- Change the style of comments
@@ -46,10 +45,9 @@ catppuccin.setup({
 		markdown = true,
 		mini = true,
 		native_lsp = {
-			inlay_hints = {},
-			virtual_text = {},
-			virtual_lines = {},
-			underlines = {},
+			inlay_hints = {
+				background = false,
+			},
 		},
 		navic = { enabled = true, custom_bg = "lualine" },
 		neotest = true,
@@ -67,6 +65,10 @@ catppuccin.setup({
 		return {
 			TelescopeResultsComment = { fg = colors.overlay0 },
 			GitSignsCurrentLineBlame = { fg = colors.overlay0 },
+			DiagnosticVirtualTextError = { bg = colors.none },
+			DiagnosticVirtualTextHint = { bg = colors.none },
+			DiagnosticVirtualTextInfo = { bg = colors.none },
+			DiagnosticVirtualTextWarn = { bg = colors.none },
 		}
 	end,
 	highlight_overrides = {

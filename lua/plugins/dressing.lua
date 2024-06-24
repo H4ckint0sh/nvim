@@ -98,7 +98,7 @@ require('dressing').setup({
 
       win_options = {
         -- Window transparency (0-100)
-        winblend = 5,
+        winblend = 0,
         -- Change default highlight groups (see :help winhl)
         winhighlight = "",
       },
