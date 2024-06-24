@@ -80,9 +80,15 @@ return {
 	{
 		"kevinhwang91/nvim-bqf",
 		ft = "qf",
+    lazy = true,
 		init = function()
 			require("plugins.bqf-init")
 		end,
+		opts = {
+			preview = {
+				winblend = 0,
+			},
+		},
 	},
 	{
 		"nvim-tree/nvim-tree.lua",
