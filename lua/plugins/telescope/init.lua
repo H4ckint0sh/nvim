@@ -65,7 +65,7 @@ require("telescope").setup({
 			},
 		},
 		file_sorter = require("telescope.sorters").get_fzy_sorter,
-		prompt_prefix = "  ",
+		prompt_prefix = "   ",
 		color_devicons = true,
 		git_icons = git_icons,
 		sorting_strategy = "ascending",
@@ -155,7 +155,7 @@ M.edit_neovim = function()
 		previewer = false,
 		prompt_title = "Hackvim Dotfiles",
 		sorting_strategy = "ascending",
-		winblend = 4,
+		winblend = 0,
 		layout_config = {
 			horizontal = {
 				mirror = false,
@@ -179,7 +179,7 @@ end
 M.command_history = function()
 	builtin.command_history(require("telescope.themes").get_dropdown({
 		color_devicons = true,
-		winblend = 4,
+		winblend = 0,
 		layout_config = {
 			width = function(_, max_columns, _)
 				return math.min(max_columns, 150)
