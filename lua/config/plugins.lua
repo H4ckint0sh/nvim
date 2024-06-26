@@ -33,15 +33,28 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		event = "BufReadPre",
-		config = function()
-			require("plugins.treesitter")
-		end,
 		dependencies = {
 			"hiphish/rainbow-delimiters.nvim",
 			"JoosepAlviste/nvim-ts-context-commentstring",
 			"nvim-treesitter/nvim-treesitter-textobjects",
 			"RRethy/nvim-treesitter-textsubjects",
 		},
+		config = function()
+			require("plugins.treesitter")
+		end,
+		keys = function()
+			local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
+
+			-- vim way: ; goes to the direction you were moving.
+			vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move)
+			vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_opposite)
+
+			-- Optionally, make builtin f, F, t, T also repeatable with ; and ,
+			vim.keymap.set({ "n", "x", "o" }, "f", ts_repeat_move.builtin_f)
+			vim.keymap.set({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F)
+			vim.keymap.set({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t)
+			vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T)
+		end,
 	},
 
 	-- ╭─────────────────────────────────────────────────────────╮
@@ -618,14 +631,6 @@ return {
 		version = "*",
 		config = function()
 			require("mini.align").setup()
-		end,
-	},
-	{
-		"echasnovski/mini.ai",
-		lazy = false,
-		version = "*",
-		config = function()
-			require("mini.ai").setup()
 		end,
 	},
 	{
