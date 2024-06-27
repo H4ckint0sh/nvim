@@ -42,19 +42,6 @@ return {
 		config = function()
 			require("plugins.treesitter")
 		end,
-		keys = function()
-			local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
-
-			-- vim way: ; goes to the direction you were moving.
-			vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move)
-			vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_opposite)
-
-			-- Optionally, make builtin f, F, t, T also repeatable with ; and ,
-			vim.keymap.set({ "n", "x", "o" }, "f", ts_repeat_move.builtin_f)
-			vim.keymap.set({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F)
-			vim.keymap.set({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t)
-			vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T)
-		end,
 	},
 
 	-- ╭─────────────────────────────────────────────────────────╮
@@ -359,17 +346,6 @@ return {
 			{ "<leader>ac", "<cmd>lua require('comment-box').llbox()<CR>", mode = "v", desc = "comment box" },
 		},
 	},
-	{
-		"akinsho/nvim-toggleterm.lua",
-		lazy = false,
-		branch = "main",
-		config = function()
-			require("plugins.toggleterm")
-		end,
-		keys = {
-			{ "<Leader>at", "<cmd>ToggleTerm direction=float<CR>", desc = "terminal float" },
-		},
-	},
 	{ "tpope/vim-repeat", lazy = false },
 	{ "tpope/vim-speeddating", lazy = false },
 	{ "dhruvasagar/vim-table-mode", ft = { "markdown" } },
@@ -433,33 +409,6 @@ return {
 		"folke/twilight.nvim",
 		config = true,
 		cond = HackVim.plugins.zen.enabled,
-	},
-	{
-		"folke/flash.nvim",
-		event = "VeryLazy",
-		opts = {
-			char = {
-				keys = { "f", "F", "t", "T" },
-			},
-		},
-		keys = {
-			{
-				"s",
-				mode = { "n", "x", "o" },
-				function()
-					require("flash").jump()
-				end,
-				desc = "Flash",
-			},
-			{
-				"r",
-				mode = "o",
-				function()
-					require("flash").remote()
-				end,
-				desc = "Remote Flash",
-			},
-		},
 	},
 	{
 		"folke/which-key.nvim",
@@ -667,76 +616,9 @@ return {
 			require("plugins.noice")
 		end,
 	},
-	{
-		"chrisgrieser/nvim-spider",
-		cond = HackVim.plugins.jump_by_subwords.enabled,
-		lazy = true,
-		keys = { "w", "e", "b", "ge" },
-		config = function()
-			vim.keymap.set({ "n", "o", "x" }, "W", "w", { desc = "Normal w" })
-			vim.keymap.set({ "n", "o", "x" }, "w", "<cmd>lua require('spider').motion('w')<CR>", { desc = "Spider-w" })
-			vim.keymap.set({ "n", "o", "x" }, "e", "<cmd>lua require('spider').motion('e')<CR>", { desc = "Spider-e" })
-			vim.keymap.set({ "n", "o", "x" }, "b", "<cmd>lua require('spider').motion('b')<CR>", { desc = "Spider-b" })
-			vim.keymap.set(
-				{ "n", "o", "x" },
-				"ge",
-				"<cmd>lua require('spider').motion('ge')<CR>",
-				{ desc = "Spider-ge" }
-			)
-		end,
-	},
-
 	-- ╭─────────────────────────────────────────────────────────╮
 	-- │ Snippets & Language & Syntax                            │
 	-- ╰─────────────────────────────────────────────────────────╯
-	{
-		"chrisgrieser/nvim-scissors",
-		dependencies = "nvim-telescope/telescope.nvim", -- optional
-		opts = {
-			snippetDir = vim.fn.stdpath("config") .. "/snippets",
-		},
-		keys = {
-			"<Leader>asa",
-			"<Leader>ase",
-		},
-		config = function()
-			local present, wk = pcall(require, "which-key")
-			if not present then
-				return
-			end
-
-			wk.register({
-				a = {
-					s = {
-						name = "Snippets",
-						a = { '<cmd>lua require("scissors").addNewSnippet()<CR>', "Add new snippet" },
-						e = { '<cmd>lua require("scissors").editSnippet()<CR>', "Edit snippet" },
-					},
-				},
-			}, {
-				mode = "n", -- NORMAL mode
-				prefix = "<leader>",
-				silent = true, -- use `silent` when creating keymaps
-				noremap = true, -- use `noremap` when creating keymaps
-				nowait = false, -- use `nowait` when creating keymaps
-			})
-
-			wk.register({
-				a = {
-					s = {
-						name = "Snippets",
-						a = { '<cmd>lua require("scissors").addNewSnippet()<CR>', "Add new snippet from selection" },
-					},
-				},
-			}, {
-				mode = "x", -- VISUAL mode
-				prefix = "<leader>",
-				silent = true, -- use `silent` when creating keymaps
-				noremap = true, -- use `noremap` when creating keymaps
-				nowait = false, -- use `nowait` when creating keymaps
-			})
-		end,
-	},
 	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
@@ -917,44 +799,6 @@ return {
 		},
 	},
 	{
-		"sindrets/diffview.nvim",
-		lazy = true,
-		enabled = true,
-		event = "BufRead",
-		config = function()
-			require("plugins.git.diffview")
-		end,
-		keys = {
-			{ "<Leader>gd", "<cmd>lua require('plugins.git.diffview').toggle_file_history()<CR>", desc = "diff file" },
-			{ "<Leader>gS", "<cmd>lua require('plugins.git.diffview').toggle_status()<CR>", desc = "status" },
-		},
-	},
-	{
-		"akinsho/git-conflict.nvim",
-		lazy = false,
-		config = function()
-			require("plugins.git.conflict")
-		end,
-		keys = {
-			{ "<Leader>gcb", "<cmd>GitConflictChooseBoth<CR>", desc = "choose both" },
-			{ "<Leader>gcn", "<cmd>GitConflictNextConflict<CR>", desc = "move to next conflict" },
-			{ "<Leader>gcc", "<cmd>GitConflictChooseOurs<CR>", desc = "choose current" },
-			{ "<Leader>gcp", "<cmd>GitConflictPrevConflict<CR>", desc = "move to prev conflict" },
-			{ "<Leader>gci", "<cmd>GitConflictChooseTheirs<CR>", desc = "choose incoming" },
-		},
-	},
-	{
-		"ThePrimeagen/git-worktree.nvim",
-		lazy = false,
-		config = function()
-			require("plugins.git.worktree")
-		end,
-		keys = {
-			{ "<Leader>gww", desc = "worktrees" },
-			{ "<Leader>gwc", desc = "create worktree" },
-		},
-	},
-	{
 		"kdheepak/lazygit.nvim",
 		cmd = {
 			"LazyGit",
@@ -967,20 +811,6 @@ return {
 		},
 		config = function()
 			vim.g.lazygit_floating_window_scaling_factor = 0.9
-		end,
-	},
-	{
-		"pwntester/octo.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope.nvim",
-			"nvim-tree/nvim-web-devicons",
-		},
-		cmd = {
-			"Octo",
-		},
-		config = function()
-			require("plugins.git.octo")
 		end,
 	},
 

@@ -50,13 +50,13 @@ signs.setup {
     -- ╰──────────────────────────────────────────────────────────╯
 
     -- Navigation
-    map('n', ']c', function()
+    map('n', ']h', function()
       if vim.wo.diff then return ']c' end
       vim.schedule(function() gs.next_hunk() end)
       return '<Ignore>'
     end, { expr = true })
 
-    map('n', '[c', function()
+    map('n', '[h', function()
       if vim.wo.diff then return '[c' end
       vim.schedule(function() gs.prev_hunk() end)
       return '<Ignore>'

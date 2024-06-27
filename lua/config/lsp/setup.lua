@@ -26,7 +26,8 @@ mason_lsp.setup({
     "lua_ls",
     "prismals",
     "tailwindcss",
-    "tsserver"
+    "tsserver",
+    "astro"
   },
   -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed.
   -- This setting has no relation with the `ensure_installed` setting.
@@ -133,6 +134,10 @@ require("mason-lspconfig").setup_handlers {
       init_options = require("config.lsp.servers.vuels").init_options,
       on_attach = require("config.lsp.servers.vuels").on_attach,
       settings = require("config.lsp.servers.vuels").settings,
+    })
+  end,
+  ["astro"] = function()
+    lspconfig.astro.setup({
     })
   end
 }

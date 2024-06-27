@@ -16,6 +16,7 @@ conform.setup({
     typescript = { { "prettied", "prettier" } },
     typescriptreact = { { "prettied", "prettier" } },
     yaml = { "prettier" },
+    astro = { { "prettierd", "prettier" } }
   },
 })
 

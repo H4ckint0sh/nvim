@@ -157,36 +157,6 @@ local normal_mode_mappings = {
     w = { 'watches' },
   },
 
-  g = {
-    name = 'Git',
-    a = { '<cmd>!git add %:p<CR>', 'add current' },
-    A = { '<cmd>!git add .<CR>', 'add all' },
-    b = { '<cmd>lua require("internal.blame").open()<CR>', 'blame' },
-    B = { '<cmd>Telescope git_branches<CR>', 'branches' },
-    c = {
-      name = 'Conflict',
-    },
-    h = {
-      name = 'Hunk',
-    },
-    i = { '<cmd>Octo issue list<CR>', 'Issues List' },
-    l = {
-      name = 'Log',
-      A = { '<cmd>lua require("plugins.telescope").my_git_commits()<CR>', 'commits (Telescope)' },
-      a = { '<cmd>LazyGitFilter<CR>', 'commits' },
-      C = { '<cmd>lua require("plugins.telescope").my_git_bcommits()<CR>', 'buffer commits (Telescope)' },
-      c = { '<cmd>LazyGitFilterCurrentFile<CR>', 'buffer commits' },
-    },
-    m = { 'blame line' },
-    p = { '<cmd>Octo pr list<CR>', 'Pull Requests List' },
-    s = { '<cmd>Telescope git_status<CR>', 'telescope status' },
-    w = {
-      name = 'Worktree',
-      w = 'worktrees',
-      c = 'create worktree',
-    }
-  },
-
   p = {
     name = 'Project',
     f = { 'file' },

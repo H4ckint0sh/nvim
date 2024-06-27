@@ -103,3 +103,10 @@ vim.api.nvim_set_keymap(
 	"<cmd>lua require('nvim-tree.api').tree.toggle()<CR>",
 	{ noremap = true, silent = true }
 )
+vim.api.nvim_set_keymap(
+	"n",
+	"h?",
+	"<cmd>lua require('nvim-tree.api').tree.toggle_help()<CR>",
+	{ noremap = true, silent = true }
+)
+
