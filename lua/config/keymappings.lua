@@ -7,6 +7,10 @@ keymap("n", "<C-I>", "<C-I>", silent)
 -- Select whole file
 keymap("n", "<leader>%", "ggVG", silent)
 
+-- Cursor in center while searching
+keymap("n", "n", ":normal! nzz<CR>", silent)
+keymap("n", "N", ":normal! Nzz<CR>", silent)
+
 -- Better window movement
 keymap("n", "<C-h>", "<C-w>h", silent)
 keymap("n", "<C-j>", "<C-w>j", silent)
