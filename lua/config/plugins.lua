@@ -221,7 +221,40 @@ return {
 	{ "onsails/lspkind-nvim" },
 	{
 		"folke/trouble.nvim",
-		cmd = { "TroubleToggle", "Trouble" },
+		cmd = { "Trouble" },
+
+		keys = {
+			{
+				"<leader>cD",
+				"<cmd>Trouble diagnostics toggle<cr>",
+				desc = "Workspace Diagnostics",
+			},
+			{
+				"<leader>cd",
+				"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+				desc = "Buffer Diagnostics",
+			},
+			{
+				"<leader>cs",
+				"<cmd>Trouble symbols toggle focus=false<cr>",
+				desc = "Symbols (Trouble)",
+			},
+			{
+				"<leader>cx",
+				"<cmd>Trouble lsp toggle win.position=right<cr>",
+				desc = "LSP Definitions / references / ... (Trouble)",
+			},
+			{
+				"<leader>cL",
+				"<cmd>Trouble loclist toggle<cr>",
+				desc = "Location List (Trouble)",
+			},
+			{
+				"<leader>cq",
+				"<cmd>Trouble qflist toggle<cr>",
+				desc = "Quickfix List (Trouble)",
+			},
+		},
 		config = function()
 			require("plugins.trouble")
 		end,

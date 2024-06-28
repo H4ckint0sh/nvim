@@ -128,8 +128,6 @@ local normal_mode_mappings = {
   c = {
     name = 'LSP',
     a = { 'code action' },
-    d = { '<cmd>TroubleToggle<CR>', 'local diagnostics' },
-    D = { '<cmd>Telescope diagnostics wrap_results=true<CR>', 'workspace diagnostics' },
     f = { 'format' },
     l = { 'line diagnostics' },
     r = { 'rename' },
@@ -177,7 +175,7 @@ local normal_mode_mappings = {
     h = { '<cmd>Telescope oldfiles hidden=true<CR>', 'file history' },
     H = { '<cmd>lua require("plugins.telescope").command_history()<CR>', 'command history' },
     s = { '<cmd>Telescope search_history theme=dropdown<CR>', 'search history' },
-    q = { '<cmd>Telescope quickfix<CR>', 'quickfix list' },
+    q = { '<cmd>Telescope quickfist<CR>', 'quickfix list' },
   },
 
   t = {
