@@ -69,6 +69,9 @@ catppuccin.setup({
 			DiagnosticVirtualTextHint = { bg = colors.none },
 			DiagnosticVirtualTextInfo = { bg = colors.none },
 			DiagnosticVirtualTextWarn = { bg = colors.none },
+			TelescopePromptBorder = { fg = colors.text, bg = colors.noone },
+			TelescopeResultsBorder = { fg = colors.text, bg = colors.noone },
+			TelescopePreviewBorder = { fg = colors.text, bg = colors.noone },
 		}
 	end,
 	highlight_overrides = {
