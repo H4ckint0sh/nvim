@@ -109,7 +109,7 @@ vim.api.nvim_set_hl(0, "HackvimPrimaryBold", { bold = true, fg = mocha.lavender 
 vim.api.nvim_set_hl(0, "HackvimSecondaryBold", { bold = true, fg = mocha.mauve })
 
 vim.api.nvim_set_hl(0, "HackvimHeader", { bold = true, fg = mocha.blue })
-vim.api.nvim_set_hl(0, "HackvimHeaderInfo", { bold = true, fg = mocha.green })
-vim.api.nvim_set_hl(0, "HackvimFooter", { bold = true, fg = mocha.yellow })
+vim.api.nvim_set_hl(0, "HackvimHeaderInfo", { bold = true, fg = mocha.blue })
+vim.api.nvim_set_hl(0, "HackvimFooter", { bold = true, fg = mocha.subtext1 })
 vim.api.nvim_set_hl(0, "HackvimHeader", { bold = true, fg = mocha.blue })
 vim.api.nvim_set_hl(0, "HackvimNvimTreeTitle", { bold = true, fg = mocha.text, bg = mocha.base })

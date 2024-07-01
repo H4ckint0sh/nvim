@@ -3,7 +3,7 @@ if not present then
 	return
 end
 
-local dashboard = require("alpha.themes.dashboard")
+local mocha = require("catppuccin.palettes").get_palette("mocha")
 local icons = require("utils.icons")
 local if_nil = vim.F.if_nil
 local fn = vim.fn
@@ -13,20 +13,60 @@ local config_dir = fn.stdpath("config")
 -- │ Header                                                   │
 -- ╰──────────────────────────────────────────────────────────╯
 
-local header = {
-	"██╗  ██╗ █████╗  ██████╗██╗  ██╗██╗   ██╗██╗███╗   ███╗",
-	"██║  ██║██╔══██╗██╔════╝██║ ██╔╝██║   ██║██║████╗ ████║",
-	"███████║███████║██║     █████╔╝ ██║   ██║██║██╔████╔██║",
-	"██╔══██║██╔══██║██║     ██╔═██╗ ██║   ██║██║██║╚██╔╝██║",
-	"██║  ██║██║  ██║╚██████╗██║  ██╗╚██████╔╝██║██║ ╚═╝ ██║",
-	"╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝╚═╝     ╚═╝",
-}
-
-dashboard.section.header.type = "text"
-dashboard.section.header.val = header
-dashboard.section.header.opts = {
-	position = "center",
-	hl = "HackvimHeader",
+local header = require("alpha.themes.dashboard")
+-- Define and set highlight groups for each logo line
+vim.api.nvim_set_hl(0, "NeovimDashboardLogo1", { fg = mocha.text }) -- Indigo
+vim.api.nvim_set_hl(0, "NeovimDashboardLogo2", { fg = mocha.subtext1 }) -- Deep Purple
+vim.api.nvim_set_hl(0, "NeovimDashboardLogo3", { fg = mocha.subtext0 }) -- Deep Purple
+vim.api.nvim_set_hl(0, "NeovimDashboardLogo4", { fg = mocha.overlay2 }) -- Medium Purple
+vim.api.nvim_set_hl(0, "NeovimDashboardLogo5", { fg = mocha.overlay1 }) -- Light Purple
+vim.api.nvim_set_hl(0, "NeovimDashboardLogo6", { fg = mocha.overlay0 }) -- Very Light Purple
+vim.api.nvim_set_hl(0, "NeovimDashboardUsername", { fg = mocha.lavender }) -- light purple
+header.section.header.type = "group"
+header.section.header.val = {
+	{
+		type = "text",
+		val = "██╗  ██╗ █████╗  ██████╗██╗  ██╗██╗   ██╗██╗███╗   ███╗",
+		opts = { hl = "NeovimDashboardLogo1", shrink_margin = false, position = "center" },
+	},
+	{
+		type = "text",
+		val = "██║  ██║██╔══██╗██╔════╝██║ ██╔╝██║   ██║██║████╗ ████║",
+		opts = { hl = "NeovimDashboardLogo2", shrink_margin = false, position = "center" },
+	},
+	{
+		type = "text",
+		val = "███████║███████║██║     █████╔╝ ██║   ██║██║██╔████╔██║",
+		opts = { hl = "NeovimDashboardLogo3", shrink_margin = false, position = "center" },
+	},
+	{
+		type = "text",
+		val = "██╔══██║██╔══██║██║     ██╔═██╗ ██║   ██║██║██║╚██╔╝██║",
+		opts = { hl = "NeovimDashboardLogo4", shrink_margin = false, position = "center" },
+	},
+	{
+		type = "text",
+		val = "██║  ██║██║  ██║╚██████╗██║  ██╗╚██████╔╝██║██║ ╚═╝ ██║",
+		opts = { hl = "NeovimDashboardLogo5", shrink_margin = false, position = "center" },
+	},
+	{
+		type = "text",
+		val = "╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝ ╚═════╝ ╚═╝╚═╝     ╚═╝",
+		opts = { hl = "NeovimDashboardLogo6", shrink_margin = false, position = "center" },
+	},
+	{
+		type = "padding",
+		val = 1,
+	},
+	{
+		type = "text",
+		val = "𝙾𝚑 𝚝𝚑𝚎 𝚓𝚘𝚢 𝚘𝚏 𝚑𝚊𝚟𝚒𝚗𝚐 𝚢𝚘𝚞𝚛 𝚘𝚠𝚗 𝚌𝚞𝚜𝚝𝚘𝚖 𝚝𝚎𝚡𝚝 𝚎𝚍𝚒𝚝𝚘𝚛 :)",
+		opts = { hl = "NeovimDashboardUsername", shrink_margin = false, position = "center" },
+	},
+	{
+		type = "padding",
+		val = 1,
+	},
 }
 
 -- ╭──────────────────────────────────────────────────────────╮
@@ -114,7 +154,7 @@ local function button(sc, txt, keybind, keybind_opts)
 	}
 end
 
-dashboard.section.buttons.val = {
+header.section.buttons.val = {
 	button("f", icons.fileNoBg .. " " .. "Find File", "<cmd>Telescope find_files<CR>", {}),
 	button(
 		"w",
@@ -162,24 +202,24 @@ local function footer()
 	local plugins = require("lazy").stats().count
 	local v = vim.version()
 	local hackvim_version = line_from(config_dir .. "/.hackvim.version")
-	return string.format(" v%d.%d.%d  󰂖 %d   %s ", v.major, v.minor, v.patch, plugins, hackvim_version[1])
+	return string.format(" v%d.%d.%d  󰂖 %d  󰴹 %s ", v.major, v.minor, v.patch, plugins, hackvim_version[1])
 end
 
-dashboard.section.footer.val = {
+header.section.footer.val = {
 	footer(),
 }
-dashboard.section.footer.opts = {
+header.section.footer.opts = {
 	position = "center",
 	hl = "HackvimFooter",
 }
 
 local section = {
-	header = dashboard.section.header,
+	header = header.section.header,
 	hi_top_section = hi_top_section,
 	hi_middle_section = hi_middle_section,
 	hi_bottom_section = hi_bottom_section,
-	buttons = dashboard.section.buttons,
-	footer = dashboard.section.footer,
+	buttons = header.section.buttons,
+	footer = header.section.footer,
 }
 
 -- ╭──────────────────────────────────────────────────────────╮
@@ -196,7 +236,7 @@ local opts = {
 		section.hi_bottom_section,
 		{ type = "padding", val = 2 },
 		section.buttons,
-		{ type = "padding", val = 3 },
+		{ type = "padding", val = 2 },
 		section.footer,
 	},
 	opts = {
