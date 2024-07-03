@@ -1,40 +1,41 @@
-local mocha = require("catppuccin.palettes").get_palette("mocha")
+local colors = require("tokyonight.colors").setup({style = "night"}) -- pass in any of the config options as explained above
+
 local check_recording = require("internal.statusline.macro").check_recording
 
-local green = mocha.green
-local mauve = mocha.mauve
-local crust = mocha.crust
-local text = mocha.text
-local base = mocha.base
-local lavender = mocha.lavender
+local green = colors.green
+local purple = colors.purple
+local dark_bg = colors.bg_dark
+local text = colors.fg
+local bg = colors.bg
+local lavender = colors.blue2
 
-vim.api.nvim_set_hl(0, "StatusLineNormal", { bg = green, fg = crust })
-vim.api.nvim_set_hl(0, "StatusLineInsert", { bg = mauve, fg = crust })
-vim.api.nvim_set_hl(0, "StatusLineVisual", { bg = lavender, fg = crust })
-vim.api.nvim_set_hl(0, "StatusLineLsp", { bg = base, fg = text })
-vim.api.nvim_set_hl(0, "StatusLine", { bg = base, fg = text })
+vim.api.nvim_set_hl(0, "StatusLineNormal", { bg = green, fg = dark_bg })
+vim.api.nvim_set_hl(0, "StatusLineInsert", { bg = purple, fg = dark_bg })
+vim.api.nvim_set_hl(0, "StatusLineVisual", { bg = lavender, fg = dark_bg })
+vim.api.nvim_set_hl(0, "StatusLineLsp", { bg = bg, fg = text })
+vim.api.nvim_set_hl(0, "StatusLine", { bg = bg, fg = text })
 
 local modes_map = {
-	["n"] = { "NORMAL", mocha.lavender },
-	["no"] = { "N-PENDING", mocha.lavender },
-	["i"] = { "INSERT", mocha.green },
-	["ic"] = { "INSERT", mocha.green },
-	["t"] = { "TERMINAL", mocha.green },
-	["v"] = { "VISUAL", mocha.flamingo },
-	["V"] = { "V-LINE", mocha.flamingo },
-	[""] = { "V-BLOCK", mocha.flamingo },
-	["R"] = { "REPLACE", mocha.maroon },
-	["Rv"] = { "V-REPLACE", mocha.maroon },
-	["s"] = { "SELECT", mocha.maroon },
-	["S"] = { "S-LINE", mocha.maroon },
-	[""] = { "S-BLOCK", mocha.maroon },
-	["c"] = { "COMMAND", mocha.peach },
-	["cv"] = { "COMMAND", mocha.peach },
-	["ce"] = { "COMMAND", mocha.peach },
-	["r"] = { "PROMPT", mocha.teal },
-	["rm"] = { "MORE", mocha.teal },
-	["r?"] = { "CONFIRM", mocha.mauve },
-	["!"] = { "SHELL", mocha.green },
+	["n"] = { "NORMAL", colors.blue2 },
+	["no"] = { "N-PENDING", colors.blue2 },
+	["i"] = { "INSERT", colors.green },
+	["ic"] = { "INSERT", colors.green },
+	["t"] = { "TERMINAL", colors.green },
+	["v"] = { "VISUAL", colors.magenta },
+	["V"] = { "V-LINE", colors.magenta },
+	[""] = { "V-BLOCK", colors.magenta },
+	["R"] = { "REPLACE", colors.red1 },
+	["Rv"] = { "V-REPLACE", colors.red1 },
+	["s"] = { "SELECT", colors.red1 },
+	["S"] = { "S-LINE", colors.red1 },
+	[""] = { "S-BLOCK", colors.red1 },
+	["c"] = { "COMMAND", colors.orange },
+	["cv"] = { "COMMAND", colors.orange },
+	["ce"] = { "COMMAND", colors.orange },
+	["r"] = { "PROMPT", colors.teal },
+	["rm"] = { "MORE", colors.teal },
+	["r?"] = { "CONFIRM", colors.purple },
+	["!"] = { "SHELL", colors.green },
 }
 
 -- Function to capitalize the first character of a string
@@ -53,7 +54,7 @@ end
 for _, info in pairs(modes_map) do
 	local highlight_group = "StatusLine" .. capitalizeFirstChar(info[1])
 	local color = info[2]
-	vim.api.nvim_set_hl(0, highlight_group, { bg = color, fg = mocha.crust,  bold = true })
+	vim.api.nvim_set_hl(0, highlight_group, { bg = color, fg = colors.bg_dark,  bold = true })
 end
 
 local function get_mode_color()

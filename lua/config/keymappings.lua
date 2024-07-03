@@ -36,6 +36,10 @@ keymap("v", "<A-`>", "U", silent)
 keymap("n", "<C-s>", ":w<CR>", silent)
 keymap("i", "<C-s>", "<ESC> :w<CR>", silent)
 
+-- Buffers
+keymap('n', '<leader>x', ':bd<CR>')
+keymap('n', '<leader>X', ':bufdo bdelete<CR>', silent)
+
 -- Center cursor when cycling through search results
 keymap('n', 'n', 'nzzzv', silent)
 keymap('n', 'N', 'Nzzzv', silent)

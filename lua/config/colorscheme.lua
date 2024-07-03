@@ -1,115 +1,75 @@
-local present, catppuccin = pcall(require, "catppuccin")
+local present, tokyonight = pcall(require, "tokyonight")
 if not present then
 	return
 end
 
-local mocha = require("catppuccin.palettes").get_palette("mocha")
+local colors = require("tokyonight.colors").setup({ style = "day" }) -- pass in any of the colors.fg explained above
 
 -- ╭──────────────────────────────────────────────────────────╮
 -- │ Setup Colorscheme                                        │
 -- ╰──────────────────────────────────────────────────────────╯
-catppuccin.setup({
-	--   -- Replace this with your scheme-specific settings or remove to use the defaults
-	-- transparent = true,
-	flavour = "mocha", -- "latte, frappe, macchiato, mocha"
-	no_bold = true, --No Bold
-	styles = { -- Haes the styles of general hi groups (see `:h highlight-args`):
-		comments = { "italic" }, -- Change the style of comments
-		conditionals = { "italic" },
-		loops = {},
+tokyonight.setup({
+	style = "night", -- The theme comes in three styles, `storm`, a darker variant `night` and
+	styles = {
+		-- Style to be applied to different syntax groups
+		-- Value is any valid attr-list value for `:help nvim_set_hl`
+		comments = { italic = true },
+		keywords = { italic = true },
+		conditionals = { italic = true },
 		functions = {},
-		keywords = { "italic" },
-		strings = {},
 		variables = {},
-		numbers = {},
-		booleans = {},
-		properties = {},
-		types = {},
-		operators = {},
-		-- miscs = {}, -- Uncomment to turn off hard-coded styles
+		-- Background styles. Can be "dark", "transparent" or "normal"
+		sidebars = "dark", -- style for sidebars, see below
+		floats = "transparent", -- style for floating windows
 	},
-	-- Integrations
-	integrations = {
-		aerial = true,
-		alpha = true,
-		cmp = true,
-		dashboard = true,
-		flash = true,
-		gitsigns = true,
-		headlines = true,
-		illuminate = true,
-		indent_blankline = { enabled = true },
-		leap = true,
-		lsp_trouble = true,
-		mason = true,
-		markdown = true,
-		mini = true,
-		native_lsp = {
-			inlay_hints = {
-				background = false,
-			},
-		},
-		navic = { enabled = true, custom_bg = "lualine" },
-		neotest = true,
-		neotree = true,
-		noice = true,
-		notify = true,
-		semantic_tokens = true,
-		telescope = true,
-		treesitter = true,
-		treesitter_context = true,
-		which_key = true,
-	},
+	on_highlights = function(H, C)
+		-- Native
+		H["@keyword.import"] = { fg = C.purple, italic = true }
+		H["@tag.tsx"] = { fg = C.blue2 }
+		H["@tag.builtin.tsx"] = { fg = C.red }
 
-	custom_highlights = function(colors)
-		return {
-			TelescopeResultsComment = { fg = colors.overlay0 },
-			GitSignsCurrentLineBlame = { fg = colors.overlay0 },
-			DiagnosticVirtualTextError = { bg = colors.none },
-			DiagnosticVirtualTextHint = { bg = colors.none },
-			DiagnosticVirtualTextInfo = { bg = colors.none },
-			DiagnosticVirtualTextWarn = { bg = colors.none },
-			TelescopePromptBorder = { fg = colors.text, bg = colors.none },
-			TelescopeResultsBorder = { fg = colors.text, bg = colors.none },
-			TelescopePreviewBorder = { fg = colors.text, bg = colors.none },
-			NormalFloat = { bg = colors.none },
-			FloatBorder = { fg = colors.text, bg = colors.none },
-			Pmenu = { bg = colors.none },
-			WinSeparator = { fg = colors.text, bg = colors.none },
-			TroubleNormal = { bg = colors.none, fg = colors.text },
-			NoiceCmdlinePopupBorder = { bg = colors.none, fg = colors.text },
-			NoiceCmdlinePopupBorderCmdline = { bg = colors.none, fg = colors.text },
-			NoiceCmdlinePopupBorderCalculator = { bg = colors.none, fg = colors.text },
-			NoiceCmdlinePopupBorderFilter = { bg = colors.none, fg = colors.text },
-      NoiceCmdlinePopupBorderHelp = { bg = colors.none, fg = colors.text },
-      NoiceCmdlinePopupBorderIncRename = { bg = colors.none, fg = colors.text },
-      NoiceCmdlinePopupBorderInput = { bg = colors.none, fg = colors.text },
-      NoiceCmdlinePopupBorderLua = { bg = colors.none, fg = colors.text },
-      NoiceCmdlinePopupBorderSearch = { bg = colors.none, fg = colors.text },
-      NoiceCmdlineIconSearch = { bg = colors.none, fg = colors.mauve },
-		}
+		-- Tokyonight
+		H.CursorLine = { bg = "NONE" }
+		H.LspInlayHint = { bg = "NONE", fg = C.comment }
+		H.TelescopeResultsComment = { fg = C.comment }
+		H.GitSignsCurrentLineBlame = { fg = C.comment }
+		H.DiagnosticVirtualTextError = { bg = "NONE", fg = C.red }
+		H.DiagnosticVirtualTextHint = { bg = "NONE", fg = C.teal }
+		H.DiagnosticVirtualTextInfo = { bg = "NONE", fg = C.green }
+		H.DiagnosticVirtualTextWarn = { bg = "NONE", fg = C.yellow }
+		-- H.TelescopePromptBorder = { fg = C.fg, bg = "NONE" }
+		-- H.TelescopeResultsBorder = { fg = C.fg, bg = "NONE" }
+		-- H.TelescopePreviewBorder = { fg = C.fg, bg = "NONE" }
+		H.NormalFloat = { bg = "NONE" }
+		H.FloatBorder = { fg = C.fg, bg = "NONE" }
+		H.Pmenu = { bg = "NONE" }
+		H.WinSeparator = { fg = C.fg, bg = "NONE" }
+		H.TroubleNormal = { bg = "NONE", fg = C.fg }
+		-- H.NoiceCmdlinePopupBorder = { bg = "NONE", fg = C.fg }
+		-- H.NoiceCmdlinePopupBorderCmdline = { bg = "NONE", fg = C.fg }
+		-- H.NoiceCmdlinePopupBorderCalculator = { bg = "NONE", fg = C.fg }
+		-- H.NoiceCmdlinePopupBorderFilter = { bg = "NONE", fg = C.fg }
+		-- H.NoiceCmdlinePopupBorderHelp = { bg = "NONE", fg = C.fg }
+		-- H.NoiceCmdlinePopupBorderIncRename = { bg = "NONE", fg = C.fg }
+		-- H.NoiceCmdlinePopupBorderInput = { bg = "NONE", fg = C.fg }
+		-- H.NoiceCmdlinePopupBorderLua = { bg = "NONE", fg = C.fg }
+		-- H.NoiceCmdlinePopupBorderSearch = { bg = "NONE", fg = C.fg }
+		-- H.NoiceCmdlineIconSearch = { bg = "NONE", fg = C.blue2 }
 	end,
-	highlight_overrides = {
-		all = function(colors)
-			return {
-				Tag = { fg = colors.red },
-			}
-		end,
-	},
 })
 
 -- Set Colorscheme
 vim.cmd("colorscheme " .. HackVim.colorscheme)
 
 -- Hackvim Colors
-vim.api.nvim_set_hl(0, "HackvimPrimary", { fg = mocha.mauve })
-vim.api.nvim_set_hl(0, "HackvimSecondary", { fg = mocha.lavender })
+vim.api.nvim_set_hl(0, "HackvimPrimary", { fg = colors.purple })
+vim.api.nvim_set_hl(0, "HackvimSecondary", { fg = colors.yellow })
 
-vim.api.nvim_set_hl(0, "HackvimPrimaryBold", { bold = true, fg = mocha.lavender })
-vim.api.nvim_set_hl(0, "HackvimSecondaryBold", { bold = true, fg = mocha.mauve })
+vim.api.nvim_set_hl(0, "HackvimPrimaryBold", { bold = true, fg = colors.purple })
+vim.api.nvim_set_hl(0, "HackvimSecondaryBold", { bold = true, fg = colors.yellow })
 
-vim.api.nvim_set_hl(0, "HackvimHeader", { bold = true, fg = mocha.blue })
-vim.api.nvim_set_hl(0, "HackvimHeaderInfo", { bold = true, fg = mocha.blue })
-vim.api.nvim_set_hl(0, "HackvimFooter", { bold = true, fg = mocha.subtext1 })
-vim.api.nvim_set_hl(0, "HackvimHeader", { bold = true, fg = mocha.blue })
-vim.api.nvim_set_hl(0, "HackvimNvimTreeTitle", { bold = true, fg = mocha.text, bg = mocha.base })
+vim.api.nvim_set_hl(0, "HackvimHeader", { bold = true, fg = colors.blue })
+vim.api.nvim_set_hl(0, "HackvimHeaderInfo", { bold = true, fg = colors.blue })
+vim.api.nvim_set_hl(0, "HackvimFooter", { bold = true, fg = colors.fg_gutter })
+vim.api.nvim_set_hl(0, "HackvimHeader", { bold = true, fg = colors.fg })
+vim.api.nvim_set_hl(0, "HackvimNvimTreeTitle", { bold = true, fg = colors.fg, bg = colors.bg })

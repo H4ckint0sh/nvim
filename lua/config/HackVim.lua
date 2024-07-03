@@ -9,7 +9,7 @@
 local icons = require("utils.icons")
 
 HackVim = {
-  colorscheme = "catppuccin",
+  colorscheme = "tokyonight",
   ui = {
     float = {
       border = "rounded",

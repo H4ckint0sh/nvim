@@ -3,7 +3,8 @@ if not present then
 	return
 end
 
-local mocha = require("catppuccin.palettes").get_palette("mocha")
+
+local colors = require("tokyonight.colors").setup({ style = "day" }) -- pass in any of the config options as explained above
 local icons = require("utils.icons")
 local if_nil = vim.F.if_nil
 local fn = vim.fn
@@ -13,17 +14,17 @@ local config_dir = fn.stdpath("config")
 -- │ Header                                                   │
 -- ╰──────────────────────────────────────────────────────────╯
 
-local header = require("alpha.themes.dashboard")
+dashboard = require("alpha.themes.dashboard")
 -- Define and set highlight groups for each logo line
-vim.api.nvim_set_hl(0, "NeovimDashboardLogo1", { fg = mocha.text }) -- Indigo
-vim.api.nvim_set_hl(0, "NeovimDashboardLogo2", { fg = mocha.subtext1 }) -- Deep Purple
-vim.api.nvim_set_hl(0, "NeovimDashboardLogo3", { fg = mocha.subtext0 }) -- Deep Purple
-vim.api.nvim_set_hl(0, "NeovimDashboardLogo4", { fg = mocha.overlay2 }) -- Medium Purple
-vim.api.nvim_set_hl(0, "NeovimDashboardLogo5", { fg = mocha.overlay1 }) -- Light Purple
-vim.api.nvim_set_hl(0, "NeovimDashboardLogo6", { fg = mocha.overlay0 }) -- Very Light Purple
-vim.api.nvim_set_hl(0, "NeovimDashboardUsername", { fg = mocha.lavender }) -- light purple
-header.section.header.type = "group"
-header.section.header.val = {
+vim.api.nvim_set_hl(0, "NeovimDashboardLogo1", { fg = colors.blue7 }) -- Indigo
+vim.api.nvim_set_hl(0, "NeovimDashboardLogo2", { fg = colors.comment }) -- Deep Purple
+vim.api.nvim_set_hl(0, "NeovimDashboardLogo3", { fg = colors.dark3 }) -- Deep Purple
+vim.api.nvim_set_hl(0, "NeovimDashboardLogo4", { fg = colors.dark5 }) -- Medium Purple
+vim.api.nvim_set_hl(0, "NeovimDashboardLogo5", { fg = colors.fg_dark }) -- Light Purple
+vim.api.nvim_set_hl(0, "NeovimDashboardLogo6", { fg = colors.bg_highlight }) -- Very Light Purple
+vim.api.nvim_set_hl(0, "NeovimDashboardUsername", { fg = colors.orange }) -- light purple
+dashboard.section.header.type = "group"
+dashboard.section.header.val = {
 	{
 		type = "text",
 		val = "██╗  ██╗ █████╗  ██████╗██╗  ██╗██╗   ██╗██╗███╗   ███╗",
@@ -154,7 +155,7 @@ local function button(sc, txt, keybind, keybind_opts)
 	}
 end
 
-header.section.buttons.val = {
+dashboard.section.buttons.val = {
 	button("f", icons.fileNoBg .. " " .. "Find File", "<cmd>Telescope find_files<CR>", {}),
 	button(
 		"w",
@@ -199,27 +200,58 @@ local function line_from(file)
 end
 
 local function footer()
-	local plugins = require("lazy").stats().count
 	local v = vim.version()
 	local hackvim_version = line_from(config_dir .. "/.hackvim.version")
-	return string.format(" v%d.%d.%d  󰂖 %d  󰴹 %s ", v.major, v.minor, v.patch, plugins, hackvim_version[1])
+	local version =
+		string.format(" v%d.%d.%d with HackVim %s Loaded ", v.major, v.minor, v.patch, hackvim_version[1])
+
+	if vim.o.filetype == "lazy" then
+		vim.cmd.close()
+		vim.api.nvim_create_autocmd("User", {
+			once = true,
+			pattern = "AlphaReady",
+			callback = function()
+				require("lazy").show()
+			end,
+		})
+	end
+
+	require("alpha").setup(dashboard.opts)
+
+	vim.api.nvim_create_autocmd("User", {
+		once = true,
+		pattern = "LazyVimStarted",
+		callback = function()
+			local stats = require("lazy").stats()
+			local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
+			dashboard.section.footer.val = "⚡ "
+				.. version
+				.. stats.loaded
+				.. "/"
+				.. stats.count
+				.. " plugins in "
+				.. ms
+				.. "ms"
+			pcall(vim.cmd.AlphaRedraw)
+		end,
+	})
 end
 
-header.section.footer.val = {
+dashboard.section.footer.val = {
 	footer(),
 }
-header.section.footer.opts = {
+dashboard.section.footer.opts = {
 	position = "center",
 	hl = "HackvimFooter",
 }
 
 local section = {
-	header = header.section.header,
+	header = dashboard.section.header,
 	hi_top_section = hi_top_section,
 	hi_middle_section = hi_middle_section,
 	hi_bottom_section = hi_bottom_section,
-	buttons = header.section.buttons,
-	footer = header.section.footer,
+	buttons = dashboard.section.buttons,
+	footer = dashboard.section.footer,
 }
 
 -- ╭──────────────────────────────────────────────────────────╮
