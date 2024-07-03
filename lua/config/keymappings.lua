@@ -7,9 +7,28 @@ keymap("n", "<C-I>", "<C-I>", silent)
 -- Select whole file
 keymap("n", "<leader>%", "ggVG", silent)
 
--- Cursor in center while searching
-keymap("n", "n", ":normal! nzz<CR>", silent)
-keymap("n", "N", ":normal! Nzz<CR>", silent)
+-- Keep stuff centred while moving around
+keymap("n", "*", "*zzzv")
+keymap("n", "#", "#zzzv")
+keymap("n", ",", ",zzzv")
+keymap("n", ";", ";zzzv")
+keymap("n", "n", "nzzzv")
+keymap("n", "N", "Nzzzv")
+
+-- Some fun register stuff
+keymap("v", "<leader>y", '"+y')
+keymap("n", "<leader>Y", '"+y$')
+keymap("v", "<leader>d", '"_d')
+keymap("n", "<leader>x", '"_x')
+keymap("n", "<leader>p", '"_dP')
+
+-- Keep things highlighted after moving with < and >
+keymap("v", "<", "<gv")
+keymap("v", ">", ">gv")
+
+-- Move stuff up and down in visual mode
+keymap("v", "J", ":m '>+1<CR>gv=gv")
+keymap("v", "K", ":m '<-2<CR>gv=gv")
 
 -- Better window movement
 keymap("n", "<C-h>", "<C-w>h", silent)
@@ -37,12 +56,12 @@ keymap("n", "<C-s>", ":w<CR>", silent)
 keymap("i", "<C-s>", "<ESC> :w<CR>", silent)
 
 -- Buffers
-keymap('n', '<leader>x', ':bd<CR>')
-keymap('n', '<leader>X', ':bufdo bdelete<CR>', silent)
+keymap("n", "<leader>x", ":bd<CR>")
+keymap("n", "<leader>X", ":bufdo bdelete<CR>", silent)
 
 -- Center cursor when cycling through search results
-keymap('n', 'n', 'nzzzv', silent)
-keymap('n', 'N', 'Nzzzv', silent)
+keymap("n", "n", "nzzzv", silent)
+keymap("n", "N", "Nzzzv", silent)
 
 -- Telescope
 keymap(
