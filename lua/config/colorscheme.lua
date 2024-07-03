@@ -20,7 +20,7 @@ tokyonight.setup({
 		variables = {},
 		-- Background styles. Can be "dark", "transparent" or "normal"
 		sidebars = "dark", -- style for sidebars, see below
-		floats = "transparent", -- style for floating windows
+		floats = "dark", -- style for floating windows
 	},
 	on_highlights = function(H, C)
 		-- Native
@@ -37,24 +37,8 @@ tokyonight.setup({
 		H.DiagnosticVirtualTextHint = { bg = "NONE", fg = C.teal }
 		H.DiagnosticVirtualTextInfo = { bg = "NONE", fg = C.green }
 		H.DiagnosticVirtualTextWarn = { bg = "NONE", fg = C.yellow }
-		-- H.TelescopePromptBorder = { fg = C.fg, bg = "NONE" }
-		-- H.TelescopeResultsBorder = { fg = C.fg, bg = "NONE" }
-		-- H.TelescopePreviewBorder = { fg = C.fg, bg = "NONE" }
-		H.NormalFloat = { bg = "NONE" }
-		H.FloatBorder = { fg = C.fg, bg = "NONE" }
-		H.Pmenu = { bg = "NONE" }
 		H.WinSeparator = { fg = C.fg, bg = "NONE" }
 		H.TroubleNormal = { bg = "NONE", fg = C.fg }
-		-- H.NoiceCmdlinePopupBorder = { bg = "NONE", fg = C.fg }
-		-- H.NoiceCmdlinePopupBorderCmdline = { bg = "NONE", fg = C.fg }
-		-- H.NoiceCmdlinePopupBorderCalculator = { bg = "NONE", fg = C.fg }
-		-- H.NoiceCmdlinePopupBorderFilter = { bg = "NONE", fg = C.fg }
-		-- H.NoiceCmdlinePopupBorderHelp = { bg = "NONE", fg = C.fg }
-		-- H.NoiceCmdlinePopupBorderIncRename = { bg = "NONE", fg = C.fg }
-		-- H.NoiceCmdlinePopupBorderInput = { bg = "NONE", fg = C.fg }
-		-- H.NoiceCmdlinePopupBorderLua = { bg = "NONE", fg = C.fg }
-		-- H.NoiceCmdlinePopupBorderSearch = { bg = "NONE", fg = C.fg }
-		-- H.NoiceCmdlineIconSearch = { bg = "NONE", fg = C.blue2 }
 	end,
 })
 
