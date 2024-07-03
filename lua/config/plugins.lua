@@ -370,6 +370,14 @@ return {
 		end,
 	},
 	{
+		"numToStr/Comment.nvim",
+		lazy = false,
+		dependencies = "JoosepAlviste/nvim-ts-context-commentstring",
+		config = function()
+			require("plugins.comment")
+		end,
+	},
+	{
 		"LudoPinelli/comment-box.nvim",
 		lazy = false,
 		keys = {
