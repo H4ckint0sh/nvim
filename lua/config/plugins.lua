@@ -444,19 +444,21 @@ return {
 		end,
 		cond = HackVim.plugins.zen.enabled,
 	},
-  {
-    "folke/flash.nvim",
-    event = "VeryLazy",
-    opts = {
-      char = {
-        keys = { "f", "F", "t", "T" },
-      }
-    },
+	{
+		"folke/flash.nvim",
+		event = "VeryLazy",
+		opts = {
+			char = {
+				keys = { "f", "F", "t", "T" },
+			},
+		},
+    -- stylua: ignore
     keys = {
       { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end,   desc = "Flash" },
+      { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
       { "r", mode = "o",               function() require("flash").remote() end, desc = "Remote Flash" },
     },
-  },
+	},
 	{
 		"folke/twilight.nvim",
 		config = true,
