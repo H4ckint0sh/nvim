@@ -3,8 +3,7 @@ if not present then
 	return
 end
 
-
-local colors = require("tokyonight.colors").setup({ style = "day" }) -- pass in any of the config options as explained above
+local colors = require("tokyonight.colors").setup({ style = "night" }) -- pass in any of the config options as explained above
 local icons = require("utils.icons")
 local if_nil = vim.F.if_nil
 local fn = vim.fn
