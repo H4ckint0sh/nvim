@@ -16,7 +16,7 @@ require("nvim-treesitter.configs").setup({
 		"markdown",
 		"prisma",
 		"vim",
-    "astro",
+		"astro",
 		"vimdoc",
 	}, -- one of "all", or a list of languages
 	sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)

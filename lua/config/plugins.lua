@@ -228,7 +228,9 @@ return {
 	{
 		"folke/trouble.nvim",
 		cmd = { "Trouble" },
-
+		config = function()
+			require("plugins.trouble")
+		end,
 		keys = {
 			{
 				"<leader>cD",
@@ -251,6 +253,26 @@ return {
 				desc = "LSP Definitions / references / ... (Trouble)",
 			},
 			{
+				"<leader>gr",
+				"<cmd>Trouble lsp_references<cr>",
+				desc = "LSP Definitions / references / ... (Trouble)",
+			},
+			{
+				"<leader>gd",
+				"<cmd>Trouble lsp_definitions<cr>",
+				desc = "LSP Definitions / references / ... (Trouble)",
+			},
+			{
+				"<leader>gi",
+				"<cmd>Trouble lsp_implementations<cr>",
+				desc = "LSP Definitions / refere)",
+			},
+			{
+				"<leader>gy",
+				"<cmd>Trouble lsp_type_definitions<cr>",
+				desc = "LSP Definitions / references / ... (Trouble)",
+			},
+			{
 				"<leader>cL",
 				"<cmd>Trouble loclist toggle<cr>",
 				desc = "Location List (Trouble)",
@@ -261,9 +283,6 @@ return {
 				desc = "Quickfix List (Trouble)",
 			},
 		},
-		config = function()
-			require("plugins.trouble")
-		end,
 	},
 	{ "nvim-lua/popup.nvim" },
 	{
@@ -300,19 +319,6 @@ return {
 		"dmmulroy/tsc.nvim",
 		cmd = { "TSC" },
 		config = true,
-	},
-	{
-		"dnlhc/glance.nvim",
-		config = function()
-			require("plugins.glance")
-		end,
-		cmd = { "Glance" },
-		keys = {
-			{ "gd", "<cmd>Glance definitions<CR>", desc = "LSP Definition" },
-			{ "gr", "<cmd>Glance references<CR>", desc = "LSP References" },
-			{ "gm", "<cmd>Glance implementations<CR>", desc = "LSP Implementations" },
-			{ "gy", "<cmd>Glance type_definitions<CR>", desc = "LSP Type Definitions" },
-		},
 	},
 	{
 		"antosha417/nvim-lsp-file-operations",

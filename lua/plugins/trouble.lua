@@ -5,7 +5,7 @@ require("trouble").setup({
 		zo = "fold_open",
 	},
 	modes = {
-		mode = "diagnostics",
+		mode = "lsp_references",
 		preview = {
 			type = "split",
 			relative = "win",

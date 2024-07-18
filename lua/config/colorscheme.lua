@@ -3,7 +3,7 @@ if not present then
 	return
 end
 
-local colors = require("tokyonight.colors").setup({ style = "day" }) -- pass in any of the colors.fg explained above
+local colors = require("tokyonight.colors").setup({ style = "night" }) -- pass in any of the colors.fg explained above
 
 -- ╭──────────────────────────────────────────────────────────╮
 -- │ Setup Colorscheme                                        │
@@ -39,6 +39,11 @@ tokyonight.setup({
 		H.DiagnosticVirtualTextWarn = { bg = "NONE", fg = C.yellow }
 		H.WinSeparator = { fg = C.fg, bg = "NONE" }
 		H.TroubleNormal = { bg = "NONE", fg = C.fg }
+
+		-- Galnce-nvim
+		H.GlancePreviewCursorLine = { bg = C.bg_highlight }
+		H.GlancePreviewCursorLine = { fg = C.fg }
+		H.GlanceBorderTop = { fg = C.fg }
 	end,
 })
 
